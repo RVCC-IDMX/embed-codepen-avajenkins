@@ -160,95 +160,105 @@ footer {
     grid-column: 1/-1;
   }
 }
-@import compass
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
 
-@function multiple-box-shadow ($n) 
-  $value: '#{random(2000)}px #{random(2000)}px #FFF'
-  @for $i from 2 through $n
-    $value: '#{$value} , #{random(2000)}px #{random(2000)}px #FFF'
+:root {
+  --card-height: 65vh;
+  --card-width: calc(var(--card-height) / 1.5);
+}
 
-  @return unquote($value)
 
-$shadows-small:  multiple-box-shadow(700)
-$shadows-medium: multiple-box-shadow(200)
-$shadows-big:    multiple-box-shadow(100)
+body {
+  min-height: 100vh;
+  background: #212534;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  box-sizing: border-box;
+}
 
-html
-  height: 100%
-  background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%)
-  overflow: hidden
-    
-#stars
-  width: 1px
-  height: 1px
-  background: transparent
-  box-shadow: $shadows-small
-  animation     : animStar 50s linear infinite
-    
-  &:after
-    content: " "
-    position: absolute
-    top: 2000px
-    width: 1px
-    height: 1px
-    background: transparent
-    box-shadow: $shadows-small
-    
-#stars2
-  width: 2px
-  height: 2px
-  background: transparent
-  box-shadow: $shadows-medium
-  animation     : animStar 100s linear infinite
-    
-  &:after
-    content: " "
-    position: absolute
-    top: 2000px
-    width: 2px
-    height: 2px
-    background: transparent
-    box-shadow: $shadows-medium
-    
-#stars3
-  width: 3px
-  height: 3px
-  background: transparent
-  box-shadow: $shadows-big
-  animation     : animStar 150s linear infinite
-    
-  &:after
-    content: " "
-    position: absolute
-    top: 2000px
-    width: 3px
-    height: 3px
-    background: transparent
-    box-shadow: $shadows-big
 
-#title
-  position: absolute
-  top: 50%
-  left: 0
-  right: 0
-  
-  color: #FFF
-  text-align: center
-  font-family: 'lato',sans-serif
-  font-weight: 300
-  font-size: 50px
-  letter-spacing: 10px
-  
-  margin-top: -60px
-  padding-left: 10px
-  
-  span
-    background: -webkit-linear-gradient(white, #38495a)
-    -webkit-background-clip: text
-    -webkit-text-fill-color: transparent
-    
-@keyframes animStar
-  from  
-    transform: translateY(0px)
-  to    
-    transform: translateY(-2000px)
+.card {
+  background: #191c29;
+  width: var(--card-width);
+  height: var(--card-height);
+  padding: 3px;
+  position: relative;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  font-size: 1.5em;
+  color: rgb(88 199 250 / 0%);
+  cursor: pointer;
+  font-family: cursive;
+}
+
+.card:hover {
+  color: rgb(88 199 250 / 100%);
+  transition: color 1s;
+}
+.card:hover:before, .card:hover:after {
+  animation: none;
+  opacity: 0;
+}
+
+
+.card::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
+    position: absolute;
+    z-index: -1;
+    top: -1%;
+    left: -2%;
+    animation: spin 2.5s linear infinite;
+}
+
+.card::after {
+  position: absolute;
+  content: "";
+  top: calc(var(--card-height) / 6);
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  transform: scale(0.8);
+  filter: blur(calc(var(--card-height) / 6));
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
+    opacity: 1;
+  transition: opacity .5s;
+  animation: spin 2.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+a {
+  color: #212534;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 2rem;
+}
