@@ -11,4 +11,4 @@
 
 ### Selected Pen - link to your selected pen
 
-Magic Card.. https://codepen.io/gayane-gasparyan/pen/jOmaBQK
+Pure CSS Gradient Background https://codepen.io/P1N2O/pen/pyBNzX
