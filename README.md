@@ -9,7 +9,6 @@
 5. **Carefully copy** the HTML (recommended) code
 6. **Carefully insert** the copied code into the empty **section** element inside the index.html file
 
+### Selected Pen - link to your selected pen
 
-
-[**CodePen Home
-augmented-ui social media picture-of-code thing**]https://codepen.io/propjockey/pen/dyVMgBg
+[**INSERT THE PEN TITLE HERE**](https://codepen.io)
